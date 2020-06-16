@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    container_name: app
+    build: ./
+    volumes:
+      - ./:/app
+    ports:
+      - '3000:3000'
+    networks:
+      - app
+  database_mongo:
+    container_name: database_mongo
+    image: mongo
+    ports:
+      - '27017:27017'
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge

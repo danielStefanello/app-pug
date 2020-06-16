@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, shrink-to-fit=no")
+    title App Pug
+    link(rel="stylesheet", href="/bootstrap/dist/css/bootstrap.css")
+
+  body
+    .container.jumbotron
+      h1.display-4 Média das notas
+      p Atualmente temos <strong>#{count} comentários</strong> registrados sobre nosso serviço e a média é de <strong>#{average} estrelas!</strong>
+
+    .container.mb-4
+      form#formLogin(action="/comments", method="post")
+        .form-row
+          .col-8
+            input.form-control(name='comment', type='text', placeholder='Seu comentário')
+          .col
+            select#exampleFormControlSelect1.form-control(name='rate')
+              option 0
+              option 1
+              option 2
+              option 3
+              option 4
+              option 5
+          input.btn.btn-primary.mb-1.ml-1(type="submit", value="Enviar")
+
+    .container
+      .list-group-item.d-flex.justify-content-between.align-items-center
+        h6
+          strong Comentário
+        h6 
+          strong Nota
+      ul.list-group
+        each comment, i in comments
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+            span.col-11= comment.comment
+            span.ml-3.mr-0.justify-content-between= comment.rate
+            img.ml-1(src='/bootstrap/icons/star-fill.svg')
