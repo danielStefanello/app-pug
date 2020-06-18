@@ -1,4 +1,4 @@
-const { MongoClient, ObjectID } = require('mongodb');
+const { MongoClient } = require('mongodb');
 const assert = require('assert');
 
 // Connection URL
@@ -18,17 +18,23 @@ MongoClient.connect(url, { useUnifiedTopology: true }, function (err, client) {
 });
 
 const getComments = () =>
-  new Promise((resolve) => {
+  new Promise((resolve, reject) => {
     db.collection('comments')
       .find({})
-      .toArray((err, comments) => resolve(comments));
+      .toArray((err, comments) => {
+        if (err) reject(err);
+        resolve(comments);
+      });
   });
 
 const setComments = (comment, rate) => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     db.collection('comments').insertOne(
       { comment, rate },
-      (err, { ops: [comment] }) => resolve(comment)
+      (err, { ops: [comment] }) => {
+        if (err) reject(err);
+        resolve(comment);
+      }
     );
   });
 };
