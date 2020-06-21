@@ -1,8 +1,8 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectID } = require('mongodb');
 const assert = require('assert');
 
 // Connection URL
-const url = 'mongodb://database_mongo';
+const url = 'mongodb://localhost:27017';
 
 // Database Name
 const dbName = 'app-pug';
@@ -22,17 +22,17 @@ const getComments = () =>
     db.collection('comments')
       .find({})
       .toArray((err, comments) => {
-        if (err) reject(err);
+        if (err) return reject(err);
         resolve(comments);
       });
   });
 
-const setComments = (comment, rate) => {
+const setComments = async (comment, rate) => {
   return new Promise((resolve, reject) => {
     db.collection('comments').insertOne(
-      { comment, rate },
+      { comment, rate: +rate },
       (err, { ops: [comment] }) => {
-        if (err) reject(err);
+        if (err) return reject(err);
         resolve(comment);
       }
     );
