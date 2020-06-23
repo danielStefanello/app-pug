@@ -11,9 +11,11 @@ $('#sender').click(() => {
     rate: Number(rate.val()),
   };
 
-  $.post('http://localhost:3000/comments', sendData, (data) => {
-    // console.log(data);
-  }).done(() => $('#loader').toggleClass('invisible'));
+  $.post('http://localhost:3000/comments', sendData, (data) => {}).done(() => {
+    setTimeout(() => {
+      $('#loader').toggleClass('invisible');
+    }, 1000);
+  });
 
   comment.val('');
   rate.val(0);
@@ -24,12 +26,17 @@ function renderItem(comment, rate) {
     .addClass('list-group-item')
     .addClass('d-flex')
     .addClass('justify-content-between')
-    .addClass('align-items-center');
-  var colComment = $('<span>').addClass('col-11').text(comment);
+    .addClass('align-items-center')
+    .attr('data-cy', 'content-commentary');
+  var colComment = $('<span>')
+    .addClass('col-11')
+    .attr('data-cy', 'comment-text')
+    .text(comment);
   var colRate = $('<span>')
     .addClass('ml-3')
     .addClass('mr-0')
     .addClass('justify-content-between')
+    .attr('data-cy', 'comment-rate')
     .text(rate);
   var icon = $('<img>')
     .addClass('ml-1')

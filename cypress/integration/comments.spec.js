@@ -10,20 +10,22 @@ describe('Should be able register a comment', () => {
       .as('comments')
       .then(() => {
         this.comments.forEach((item) => {
-          cy.get('#inComment')
+          cy.get('[data-cy=input-commentary]')
             .type(item.comment)
             .should('have.value', item.comment);
 
-          cy.get('#inRate').select(item.rate).should('have.value', item.rate);
+          cy.get('[data-cy=input-rate]')
+            .select(item.rate)
+            .should('have.value', item.rate);
 
-          cy.get('#sender').click();
+          cy.get('[data-cy=send-commentary]').click();
 
-          cy.get('#ulComments li:last-child > .col-11').should(
+          cy.get('#ulComments li:last-child > [data-cy=comment-text]').should(
             'have.text',
             item.comment
           );
 
-          cy.get('#ulComments li:last-child > .ml-3').should(
+          cy.get('#ulComments li:last-child > [data-cy=comment-rate]').should(
             'have.text',
             item.rate
           );

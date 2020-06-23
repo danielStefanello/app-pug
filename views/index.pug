@@ -11,8 +11,6 @@ html(lang="en")
     #loader.invisible
       .spinner-border(role="status")
         span.sr-only
-    //- #loader.invisible
-      img(src='/bootstrap/icons/arrow-clockwise.svg')
     .container.jumbotron
       h1.display-4 Média das notas
       p Atualmente temos <strong><span id="count">#{count}</span> comentários</strong> registrados sobre nosso serviço e a média é de <strong><span id="average">#{average}</span> estrelas!</strong>
@@ -21,16 +19,16 @@ html(lang="en")
       form#sendComment
         .form-row
           .col-8
-            input#inComment.form-control(name='comment', type='text', placeholder='Seu comentário')
+            input#inComment.form-control(name='comment', type='text', placeholder='Seu comentário', data-cy='input-commentary')
           .col
-            select#inRate.form-control(name='rate')
+            select#inRate.form-control(name='rate', data-cy='input-rate')
               option 0
               option 1
               option 2
               option 3
               option 4
               option 5
-          input#sender.btn.btn-primary.mb-1.ml-1(type="button", value="Enviar")
+          input#sender.btn.btn-primary.mb-1.ml-1(type='button', value='Enviar', data-cy='send-commentary')
 
     .container
       .list-group-item.d-flex.justify-content-between.align-items-center
@@ -40,9 +38,9 @@ html(lang="en")
           strong Nota
       ul.list-group#ulComments
         each comment, i in comments
-          li.list-group-item.d-flex.justify-content-between.align-items-center
-            span.col-11= comment.comment
-            span.ml-3.mr-0.justify-content-between= comment.rate
+          li.list-group-item.d-flex.justify-content-between.align-items-center(data-cy='content-commentary')
+            span.col-11(data-cy="comment-text")= comment.comment
+            span.ml-3.mr-0.justify-content-between(data-cy="comment-rate")= comment.rate
             img.ml-1(src='/bootstrap/icons/star-fill.svg')
 
   script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
