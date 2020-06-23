@@ -1,22 +1,34 @@
 ///<reference types='cypress' />
 
 describe('Should be able register a comment', () => {
-  before(() => {
+  beforeEach(() => {
     cy.visit('http://localhost:3000');
   });
 
-  it('Should be create coment', () => {
-    const comment = 'Meu primeiro comentário criado com um teste';
-    const rate = '4';
-    cy.get('#inComment').type(comment).should('have.value', comment);
+  it('Should be create coment', function () {
+    cy.fixture('commentsData')
+      .as('comments')
+      .then(() => {
+        this.comments.forEach((item) => {
+          cy.get('#inComment')
+            .type(item.comment)
+            .should('have.value', item.comment);
 
-    cy.get('#inRate').select(rate).should('have.value', rate);
+          cy.get('#inRate').select(item.rate).should('have.value', item.rate);
 
-    cy.get('#sender').click();
+          cy.get('#sender').click();
 
-    cy.get('#ulComments li:last-child > .col-11').should('have.text', comment);
+          cy.get('#ulComments li:last-child > .col-11').should(
+            'have.text',
+            item.comment
+          );
 
-    cy.get('#ulComments li:last-child > .ml-3').should('have.text', rate);
+          cy.get('#ulComments li:last-child > .ml-3').should(
+            'have.text',
+            item.rate
+          );
+        });
+      });
   });
 
   it('Should be increment number of commentaries', () => {
