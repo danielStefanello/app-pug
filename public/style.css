@@ -1,3 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap');
+
+* {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.container > h4 {
+  color: #d9534f;
+  font-family: 'Calligraffitti', cursive;
+}
+
+#header {
+  text-align: right;
+  color: #d9534f;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+#header img {
+  padding: 10px;
+}
+
+#inComment,
+#inRate {
+  border-color: #d9534f;
+}
+
+#ulComments span {
+  text-align: justify;
+  vertical-align: middle;
+}
+
 #loader {
   position: fixed;
   z-index: 1;
@@ -10,4 +43,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#progressBar {
+  width: 90px;
+  height: 20px;
+}
+
+#progressBarBackground {
+  margin-bottom: -20px;
+  background-color: yellow;
+  color: yellow;
+  height: 100%;
+  width: 0;
+}
+
+#progressBarBackground svg {
+  top: -17px;
+  background: transparent;
+  opacity: 0.5;
 }

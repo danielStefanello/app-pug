@@ -14,6 +14,9 @@ html(lang="en")
     .container.jumbotron
       h1.display-4 Média das notas
       p Atualmente temos <strong><span id="count">#{count}</span> comentários</strong> registrados sobre nosso serviço e a média é de <strong><span id="average">#{average}</span> estrelas!</strong>
+        div#progressBar
+          div#progressBarBackground .
+          img(src='/bootstrap/icons/star-bar.svg')
 
     .container.mb-4
       form#sendComment

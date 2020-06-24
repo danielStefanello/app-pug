@@ -12,9 +12,10 @@ routes.get('/', async (request, response) => {
     return accum + Number(comment.rate);
   }, 0);
 
-  const average = comments.length !== 0 ? Math.round(sun / comments.length) : 0;
+  const average =
+    comments.length !== 0 ? (sun / comments.length).toFixed(1) : 0;
 
-  return response.render('index', { comments, count, average });
+  return response.render('home', { comments, count, average });
 });
 
 routes.post('/comments', async (request, response) => {
