@@ -1,7 +1,9 @@
 $('#sender').click(() => {
   $('#loader').toggleClass('invisible');
+
   var comment = $('#inComment');
   var rate = $('#inRate');
+
   $('#ulComments').append($(renderItem(comment.val(), rate.val())));
 
   updateHeader(rate.val());
@@ -16,6 +18,8 @@ $('#sender').click(() => {
       $('#loader').toggleClass('invisible');
     }, 500);
   });
+
+  scrollCommentary();
 
   comment.val('');
   rate.val(0);
@@ -61,4 +65,9 @@ function updateHeader(rate) {
 
   $('#count').text(count);
   $('#average').text(average);
+}
+
+function scrollCommentary() {
+  var positionLastCommentary = $('#ulComments > li:last').offset().top;
+  $('html, body').animate({ scrollTop: positionLastCommentary + 'px' }, 600);
 }
