@@ -9915,7 +9915,7 @@ h3 {
   font-family: "Quicksand", sans-serif;
 }
 
-.container > h4 {
+.container h4 {
   color: #d9534f;
   font-family: "Calligraffitti", cursive;
 }
@@ -9943,7 +9943,7 @@ h3 {
 
 #loader {
   position: fixed;
-  z-index: 1;
+  z-index: 999;
   left: 0;
   top: 0;
   width: 100%;
@@ -9955,23 +9955,24 @@ h3 {
   justify-content: center;
 }
 
-#progressBar {
-  width: 90px;
-  height: 20px;
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
 }
 
-#progressBarBackground {
-  margin-bottom: -20px;
-  background-color: yellow;
-  color: yellow;
-  height: 100%;
-  width: 0;
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
 }
 
-#progressBarBackground svg {
-  top: -17px;
-  background: transparent;
-  opacity: 0.5;
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #d9534f;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #c9302c;
 }
 
 /*# sourceMappingURL=bootstrap.css.map */

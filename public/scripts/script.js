@@ -4,8 +4,6 @@ $('#sender').click(() => {
   var comment = $('#inComment');
   var rate = $('#inRate');
 
-  $('#ulComments').append($(renderItem(comment.val(), rate.val())));
-
   updateHeader(rate.val());
 
   var sendData = {
@@ -13,13 +11,16 @@ $('#sender').click(() => {
     rate: Number(rate.val()),
   };
 
-  $.post('http://localhost:3000/comments', sendData, (data) => {}).done(() => {
-    setTimeout(() => {
-      $('#loader').toggleClass('invisible');
-    }, 500);
-  });
-
-  scrollCommentary();
+  $.post('http://localhost:3000/comments', sendData, () => {})
+    .done(() => {
+      $('#ulComments').append($(renderItem(sendData.comment, sendData.rate)));
+      scrollCommentary();
+    })
+    .always(() => {
+      setTimeout(() => {
+        $('#loader').toggleClass('invisible');
+      }, 300);
+    });
 
   comment.val('');
   rate.val(0);
