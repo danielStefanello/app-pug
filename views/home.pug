@@ -11,12 +11,12 @@ html(lang="pt-br")
     #loader.invisible
       .spinner-border(role="status")
         span.sr-only
-    .container.mt-5
+    .container.mt-5.mb-3
       h4.mb-3 Avalie este produto
 
       form#sendComment.form-row.input-group
         input#inComment.form-control.input-group-append(name='comment', type='text', placeholder='Seu comentário', data-cy='input-commentary')
-      
+
         select#inRate.form-control.input-group-append.col-1(name='rate', data-cy='input-rate')
           option 0
           option 1
@@ -30,7 +30,7 @@ html(lang="pt-br")
 
       h4.mt-5 Confira as avaliações anteriores
 
-      p#header <span id="count">#{count}</span> avaliações / Média <span id="average">#{average}</span>
+      p#header <span id='count' data-cy='count'>#{count}</span> avaliações / Média <span id='average' data-cy='average'>#{average}</span>
         img(src='/assets/red-star.svg')
 
       ul#ulComments.list-group
